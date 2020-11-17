@@ -6,79 +6,47 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 15:06:53 by mrosette          #+#    #+#             */
-/*   Updated: 2020/10/31 16:05:52 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:04:49 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		checkofrminus(const char *str, int i)
+#include "libft.h"
+
+static	int	ft_isspace(char c)
 {
-	int minus;
-
-	minus = 1;
-
-	while ((str[i] == '+') || (str[i] == '-'))
-	{
-		if (str[i] == '-')
-			minus = -minus;
-		i++;
-	}
-	return (minus);
-}
-
-int		checkforlength(const char *str, int i, int minus)
-{
-	int len;
-
-	len = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		len++;
-		i++;
-	}
-
-	if (len >= 11 && minus == -1)
+	c = (unsigned char)c;
+	if (c == '\t' || c == '\n' || c == '\v'
+	|| c == '\f' || c == '\r' || c == ' ')
 	{
 		return (1);
-	}
-	if (len >= 11 && minus == 1)
-	{
-		return (2);
 	}
 	return (0);
 }
 
-int		findres(const char *str, int i, int res, int minus)
+int			ft_atoi(const char *str)
 {
+	unsigned long	result;
+	unsigned long	edge;
+	size_t			i;
+	int				minus;
+
+	result = 0;
+	edge = (unsigned long)(2147483647 / 10);
+	i = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	minus = (str[i] == '-') ? -1 : 1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = 10 * res + (str[i] - '0');
-		i++;
+		if ((result > edge || (result == edge && (str[i] - '0') > 7))
+		&& minus == 1)
+			return (-1);
+		else if ((result > edge || (result == edge && (str[i] - '0') > 8))
+			&& minus == -1)
+			return (0);
+		result = result * 10 + (str[i++] - '0');
 	}
-	return (res * minus);
-}
-
-int		ft_atoi(const char *str)
-{
-	int res;
-	int i;
-	int minus;
-	int check;
-
-	res = 0;
-	i = 0;
-	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
-	|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
-	{
-		i++;
-	}
-	minus = checkofrminus(str, i);
-	while ((str[i] == '-') || (str[i] == '+'))
-		i++;
-
-	check = checkforlength(str, i, minus);
-	if (check == 2)
-		return (-1);
-	if (check == 1)
-		return (0);
-	return (findres(str, i, res, minus));
+	return ((int)(result * minus));
 }

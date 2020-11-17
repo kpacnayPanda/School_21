@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 11:21:51 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/10 16:15:25 by mrosette         ###   ########.fr       */
+/*   Created: 2020/11/09 17:07:03 by mrosette          #+#    #+#             */
+/*   Updated: 2020/11/09 17:31:57 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char	*str;
-	unsigned char	elem;
+	unsigned int	num;
+	char			c;
 
-	str = (unsigned char *)s;
-	elem = (unsigned char)c;
-	while (n > 0)
+	if (n < 0)
 	{
-		if (*str == elem)
-		{
-			return ((void *)str);
-		}
-		str++;
-		n--;
+		write(fd, "-", 1);
+		num = (unsigned int)(-n);
 	}
-	return (NULL);
+	else
+		num = (unsigned int)n;
+	if (num >= 10)
+	{
+		ft_putnbr_fd(num / 10, fd);
+		ft_putnbr_fd(num % 10, fd);
+	}
+	else
+	{
+		c = num + '0';
+		write(fd, &c, 1);
+	}
 }

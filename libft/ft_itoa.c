@@ -6,13 +6,13 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:35:15 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/09 15:40:33 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/17 15:06:47 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*negative_itoa(int n)
+static char	*negative_itoa(int n)
 {
 	char	*res;
 	long	num;
@@ -41,7 +41,7 @@ char	*negative_itoa(int n)
 	return (res);
 }
 
-char	*num_zero(int n)
+static char	*num_zero(int n)
 {
 	int		len;
 	char	*res;
@@ -58,7 +58,7 @@ char	*num_zero(int n)
 	return (res);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*res;
 	int		len;

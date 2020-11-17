@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 16:20:38 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/09 16:41:18 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/09 16:48:40 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	if (f == NULL)
 	{
-		res = (char)s;
+		res = (char*)s;
 		return (res);
 	}
 	while (s[i] != '\0')

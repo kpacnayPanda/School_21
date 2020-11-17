@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:56:44 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/09 14:27:34 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:17:42 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		find_all_words(char *s, char c)
 	return (res);
 }
 
-static char	*find_word(char *word, char c)
+static char		*find_word(char *word, char c)
 {
 	char	*res;
 	int		i;
@@ -48,7 +48,7 @@ static char	*find_word(char *word, char c)
 	return (ft_strdup(res));
 }
 
-static void	free_s2(char **s2, int i)
+static void		free_s2(char **s2, int i)
 {
 	while (i > 0)
 	{
@@ -60,7 +60,7 @@ static void	free_s2(char **s2, int i)
 	}
 }
 
-static char	**fill_array(char **s2, char *s, char c, int cnum)
+static char		**fill_array(char **s2, char *s, char c, int cnum)
 {
 	int		i;
 	int		j;
@@ -68,7 +68,6 @@ static char	**fill_array(char **s2, char *s, char c, int cnum)
 
 	i = 0;
 	j = 0;
-
 	while (i < cnum)
 	{
 		while (*s == c)
@@ -89,7 +88,7 @@ static char	**fill_array(char **s2, char *s, char c, int cnum)
 	return (s2);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	int		cnum;
 	char	**s2;

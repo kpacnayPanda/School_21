@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 11:21:51 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/10 16:15:25 by mrosette         ###   ########.fr       */
+/*   Created: 2020/11/10 14:07:36 by mrosette          #+#    #+#             */
+/*   Updated: 2020/11/10 14:12:19 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	unsigned char	*str;
-	unsigned char	elem;
+	t_list	*node;
 
-	str = (unsigned char *)s;
-	elem = (unsigned char)c;
-	while (n > 0)
+	node = (t_list*)malloc(sizeof(t_list));
+	if (node)
 	{
-		if (*str == elem)
-		{
-			return ((void *)str);
-		}
-		str++;
-		n--;
+		node->next = NULL;
+		node->content = content;
 	}
-	return (NULL);
+	return (node);
 }

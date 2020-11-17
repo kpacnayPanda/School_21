@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 11:21:51 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/10 16:15:25 by mrosette         ###   ########.fr       */
+/*   Created: 2020/11/10 14:49:12 by mrosette          #+#    #+#             */
+/*   Updated: 2020/11/10 14:59:21 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	unsigned char	*str;
-	unsigned char	elem;
+	t_list		*node;
 
-	str = (unsigned char *)s;
-	elem = (unsigned char)c;
-	while (n > 0)
+	if ((node = ft_lstlast(*lst)))
 	{
-		if (*str == elem)
-		{
-			return ((void *)str);
-		}
-		str++;
-		n--;
+		node->next = new;
 	}
-	return (NULL);
+	else
+	{
+		*lst = new;
+	}
+	new->next = NULL;
 }

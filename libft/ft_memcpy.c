@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 17:36:16 by mrosette          #+#    #+#             */
-/*   Updated: 2020/10/31 17:41:54 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:15:38 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	dest = (unsigned char *)dst;
 	source = (unsigned char *)src;
-
 	if (dst == NULL && src == NULL)
 	{
 		return (dst);

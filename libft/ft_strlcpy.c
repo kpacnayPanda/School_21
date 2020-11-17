@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 15:08:36 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/02 14:15:10 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:16:15 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ size_t		ft_strlcpy(char *dst, char *str, size_t size)
 	{
 		return (len);
 	}
-
 	while (str[i] != '\0' && i < size - 1)
 	{
 		dst[i] = str[i];
