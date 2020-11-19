@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:56:44 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/10 16:17:42 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/17 18:09:36 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ char			**ft_split(char const *s, char c)
 		return (NULL);
 	cnum = find_all_words((char*)s, c);
 	s2 = (char**)malloc((cnum + 1) * sizeof(char*));
+	if (!s2)
+		return (NULL);
 	s2 = fill_array(s2, (char*)s, c, cnum);
 	return (s2);
 }
