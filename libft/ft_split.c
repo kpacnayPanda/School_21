@@ -6,7 +6,7 @@
 /*   By: mrosette <mrosette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 17:56:44 by mrosette          #+#    #+#             */
-/*   Updated: 2020/11/17 18:09:36 by mrosette         ###   ########.fr       */
+/*   Updated: 2020/11/23 18:16:52 by mrosette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,72 +33,63 @@ static int		find_all_words(char *s, char c)
 	return (res);
 }
 
-static char		*find_word(char *word, char c)
+static char		**ft_free(char **newstr)
 {
-	char	*res;
-	int		i;
+	unsigned int i;
 
 	i = 0;
-	res = word;
-	while (word[i] && word[i] != c)
+	while (newstr[i])
 	{
+		free(newstr[i]);
 		i++;
 	}
-	word[i] = '\0';
-	return (ft_strdup(res));
+	free(newstr);
+	return (NULL);
 }
 
-static void		free_s2(char **s2, int i)
+static void		ft_get_str(char **next_str, unsigned int *strlen,
+	char c)
 {
-	while (i > 0)
-	{
-		if (s2 && *s2)
-		{
-			free(*s2);
-			*s2 = NULL;
-		}
-	}
-}
+	unsigned int i;
 
-static char		**fill_array(char **s2, char *s, char c, int cnum)
-{
-	int		i;
-	int		j;
-	char	*word;
-
+	*next_str += *strlen;
+	*strlen = 0;
 	i = 0;
-	j = 0;
-	while (i < cnum)
+	while (**next_str && **next_str == c)
+		(*next_str)++;
+	while ((*next_str)[i])
 	{
-		while (*s == c)
-			s++;
-		if (*s)
-		{
-			if (!(word = find_word(s, c)))
-			{
-				free_s2(s2, i);
-				return (NULL);
-			}
-			s2[i] = word;
-			s = s + ft_strlen(word) + 1;
-		}
+		if ((*next_str)[i] == c)
+			return ;
+		(*strlen)++;
 		i++;
 	}
-	s2[i] = NULL;
-	return (s2);
 }
 
 char			**ft_split(char const *s, char c)
 {
-	int		cnum;
-	char	**s2;
+	char			**newstr;
+	char			*next_str;
+	unsigned int	strlen;
+	unsigned int	cnum;
+	unsigned int	i;
 
-	if (!s || !(s = ft_strdup((char*)s)))
+	if (!s)
 		return (NULL);
-	cnum = find_all_words((char*)s, c);
-	s2 = (char**)malloc((cnum + 1) * sizeof(char*));
-	if (!s2)
+	cnum = find_all_words((char *)s, c);
+	if (!(newstr = malloc(sizeof(char *) * (cnum + 1))))
 		return (NULL);
-	s2 = fill_array(s2, (char*)s, c, cnum);
-	return (s2);
+	i = 0;
+	next_str = (char *)s;
+	strlen = 0;
+	while (i < cnum)
+	{
+		ft_get_str(&next_str, &strlen, c);
+		if (!(newstr[i] = malloc(sizeof(char) * (strlen + 1))))
+			return (ft_free(newstr));
+		ft_strlcpy(newstr[i], next_str, strlen + 1);
+		i++;
+	}
+	newstr[i] = NULL;
+	return (newstr);
 }
